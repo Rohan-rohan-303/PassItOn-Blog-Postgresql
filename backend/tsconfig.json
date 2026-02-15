@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "baseUrl": ".",
+    /* Required for Project References */
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true, 
+    "rootDir": "..", // Points to the root of the project to include /common
+    
+    "paths": {
+      "@common/*": ["../common/*"]
+    },
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "types": ["node", "express", "multer"],
+    "skipLibCheck": true,
+    "outDir": "./dist"
+  },
+  "include": [
+    "src/**/*", 
+    "../common/types.ts"
+  ]
+}

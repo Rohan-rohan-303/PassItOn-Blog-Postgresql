@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@common/*": ["./common/*"],
+      "@backend/*": ["./backend/src/*"]
+    },
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+  },
+  "references": [
+    { "path": "./backend" },
+    { "path": "./frontend" }
+  ]
+}

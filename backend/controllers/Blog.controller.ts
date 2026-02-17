@@ -17,6 +17,15 @@ const blogBaseQuery = `
 
 export const addBlog = async (req: Request, res: Response, next: NextFunction) => {
     try {
+
+        if (!req.file) {
+            return next({ statusCode: 400, message: "Image file is missing" });
+        }
+
+        // 2. Safely parse the data
+        if (!req.body.data) {
+            return next({ statusCode: 400, message: "Form data is missing" });
+        }
         const data = JSON.parse(req.body.data);
         let featuredImage = '';
 

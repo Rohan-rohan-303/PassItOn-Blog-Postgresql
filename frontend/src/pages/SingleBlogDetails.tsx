@@ -17,12 +17,12 @@ interface Author {
 }
 
 interface BlogDetails {
-    _id: string;
+    id: string;
     title: string;
     author: Author;
     createdAt: string;
     featuredImage: string;
-    blogContent: string;
+    blog_content: string;
 }
 
 interface BlogResponse {
@@ -73,7 +73,7 @@ const SingleBlogDetails: React.FC = () => {
                         </div>
                     </div>
                     <div className='flex items-center gap-6'>
-                        <CommentCount props={{ blogid: blogData._id }} />
+                        <CommentCount props={{ blogid: blogData.id }} />
                     </div>
                 </div>
 
@@ -88,11 +88,11 @@ const SingleBlogDetails: React.FC = () => {
                 {/* Content Section */}
                 <div 
                     className='prose prose-violet max-w-none dark:prose-invert'
-                    dangerouslySetInnerHTML={{ __html: decode(blogData.blogContent) || '' }} 
+                    dangerouslySetInnerHTML={{ __html: decode(blogData.blog_content) || '' }} 
                 />
 
                 <div className='border-t mt-10 pt-8'>
-                    <Comment props={{ blogid: blogData._id }} />
+                    <Comment props={{ blogid: blogData.id }} />
                 </div>
             </div>
 

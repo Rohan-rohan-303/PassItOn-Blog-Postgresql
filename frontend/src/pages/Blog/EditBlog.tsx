@@ -37,7 +37,7 @@ type BlogFormValues = z.infer<typeof formSchema>
 interface SingleBlogResponse {
     blog: {
         featuredImage: string;
-        category: { _id: string };
+        category: { id: string };
         title: string;
         slug: string;
         blogContent: string;
@@ -78,7 +78,7 @@ const EditBlog: React.FC = () => {
         if (blogData?.blog) {
             setPreview(blogData.blog.featuredImage)
             form.reset({
-                category: blogData.blog.category._id,
+                category: blogData.blog.category.id,
                 title: blogData.blog.title,
                 slug: blogData.blog.slug,
                 blogContent: decode(blogData.blog.blogContent)

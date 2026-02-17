@@ -83,7 +83,7 @@ const AddBlog: React.FC = () => {
             ...values, 
             // Postgres SERIAL uses 'id' as a number. 
             // If your Redux has 'user._id' as a string, cast it to a number.
-            author: Number(user.user?._id || user.user?._id) 
+            author: Number(user.user?.id || user.user?.id) 
         }
 
         const formData = new FormData()

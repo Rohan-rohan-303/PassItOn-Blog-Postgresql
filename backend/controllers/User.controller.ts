@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import  pool  from '../config/db';
 import cloudinary from "../config/cloudinary";
 import { handleError } from "../utility/handleError";
-import * as bcryptjs from 'bcryptjs';
+import bcryptjs from 'bcryptjs';
 
 export const getUser = async (req: Request, res: Response, next: NextFunction) => {
     try {

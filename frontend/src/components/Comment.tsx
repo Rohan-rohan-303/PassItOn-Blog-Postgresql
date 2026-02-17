@@ -42,14 +42,14 @@ const Comment: React.FC<CommentProps> = ({ props }) => {
 
     async function onSubmit(values: CommentFormValues) {
         try {
-            if (!user.user?._id) {
+            if (!user.user?.id) {
                 return showToast('error', 'You must be logged in to comment.');
             }
 
-            const payload = { 
-                ...values, 
+            const payload = {  
+                content: values.comment,
                 blogid: props.blogid, 
-                user: user.user._id 
+                user: user.user.id 
             }
 
             const response = await fetch(`${getEnv('VITE_API_BASE_URL')}/comment/add`, {

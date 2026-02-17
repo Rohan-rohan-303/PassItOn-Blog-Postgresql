@@ -22,13 +22,13 @@ import moment from 'moment'
 import type { ICategory } from '@common/types'
 
 interface Author {
-    _id: string;
+    id: string;
     name: string;
 }
 
 
 interface Blog {
-    _id: string;
+    id: string;
     author: Author;
     category: ICategory;
     title: string;
@@ -97,7 +97,7 @@ const BlogDetails: React.FC = () => {
                         <TableBody>
                             {blogData && blogData.blog.length > 0 ? (
                                 blogData.blog.map((blog) => (
-                                    <TableRow key={blog._id} className="hover:bg-muted/50">
+                                    <TableRow key={blog.id} className="hover:bg-muted/50">
                                         <TableCell className="font-medium">{blog?.author?.name}</TableCell>
                                         <TableCell>{blog?.category?.name}</TableCell>
                                         <TableCell className="max-w-[200px] truncate">{blog?.title}</TableCell>
@@ -111,12 +111,12 @@ const BlogDetails: React.FC = () => {
                                                     className="hover:bg-violet-600 hover:text-white" 
                                                     asChild
                                                 >
-                                                    <Link to={RouteBlogEdit(blog._id)}>
+                                                    <Link to={RouteBlogEdit(blog.id)}>
                                                         <FiEdit className="h-4 w-4" />
                                                     </Link>
                                                 </Button>
                                                 <Button 
-                                                    onClick={() => handleDelete(blog._id)} 
+                                                    onClick={() => handleDelete(blog.id)} 
                                                     variant="outline" 
                                                     size="icon"
                                                     className="hover:bg-red-600 hover:text-white"

@@ -13,7 +13,7 @@ interface Author {
 }
 
 interface Blog {
-    _id: string;
+    id: string;
     title: string;
     slug: string;
     featuredImage: string;
@@ -62,7 +62,7 @@ const BlogByCategory: React.FC = () => {
             {blogData && blogData.blog.length > 0 ? (
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
                     {blogData.blog.map(blog => (
-                        <BlogCard key={blog._id} props={blog} />
+                        <BlogCard key={blog.id} props={blog} />
                     ))}
                 </div>
             ) : (

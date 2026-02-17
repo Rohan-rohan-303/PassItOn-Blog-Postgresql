@@ -18,14 +18,14 @@ import { showToast } from '@/utility/showToast'
 
 // 1. Define the Comment structure
 interface CommentItem {
-    _id: string;
+    id: string;
     comment: string;
     blogid: {
-        _id: string;
+        id: string;
         title: string;
     };
     user: {
-        _id: string;
+        id: string;
         name: string;
     };
 }
@@ -77,7 +77,7 @@ const Comments: React.FC = () => {
                         <TableBody>
                             {data && data.comments.length > 0 ? (
                                 data.comments.map((comment) => (
-                                    <TableRow key={comment._id}>
+                                    <TableRow key={comment.id}>
                                         <TableCell className="font-medium">
                                             {comment.blogid?.title || 'Deleted Blog'}
                                         </TableCell>
@@ -87,7 +87,7 @@ const Comments: React.FC = () => {
                                         </TableCell>
                                         <TableCell className="text-right">
                                             <Button 
-                                                onClick={() => handleDelete(comment._id)} 
+                                                onClick={() => handleDelete(comment.id)} 
                                                 variant="outline" 
                                                 size="icon"
                                                 className="hover:bg-red-500 hover:text-white transition-colors"

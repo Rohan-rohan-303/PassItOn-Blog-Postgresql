@@ -13,7 +13,7 @@ export interface IUser {
 export interface IUserState {
         isLoggedIn: boolean;
         user: {
-            _id: string;
+            id: string;
             role: 'admin' | 'user';
             name?: string;
             email?: string;

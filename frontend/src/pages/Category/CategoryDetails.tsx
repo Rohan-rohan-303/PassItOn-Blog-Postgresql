@@ -21,7 +21,7 @@ import { showToast } from '@/utility/showToast'
 
 // 1. Define the Category structure
 interface Category {
-    _id: string;
+    id: string;
     name: string;
     slug: string;
 }
@@ -86,7 +86,7 @@ const CategoryDetails: React.FC = () => {
                         <TableBody>
                             {categoryData && categoryData.category.length > 0 ? (
                                 categoryData.category.map((category) => (
-                                    <TableRow key={category._id} className="hover:bg-muted/50 transition-colors">
+                                    <TableRow key={category.id} className="hover:bg-muted/50 transition-colors">
                                         <TableCell className="font-medium">{category.name}</TableCell>
                                         <TableCell>
                                             <span className="bg-slate-100 px-2 py-1 rounded text-xs font-mono">
@@ -101,12 +101,12 @@ const CategoryDetails: React.FC = () => {
                                                     className="hover:bg-violet-600 hover:text-white" 
                                                     asChild
                                                 >
-                                                    <Link to={RouteEditCategory(category._id)}>
+                                                    <Link to={RouteEditCategory(category.id)}>
                                                         <FiEdit className="h-4 w-4" />
                                                     </Link>
                                                 </Button>
                                                 <Button 
-                                                    onClick={() => handleDelete(category._id)} 
+                                                    onClick={() => handleDelete(category.id)} 
                                                     variant="outline" 
                                                     size="icon"
                                                     className="hover:bg-red-600 hover:text-white"

@@ -4,16 +4,23 @@ import { handleError } from "../utility/handleError";
 
 export const addcomment = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { user, blogid, comment } = req.body;
+        // 1. Safe: Get ID from the token, not the body
+        const userId = (req as any).user.id; 
+        
+        // 2. Extract blogid and content (match your SQL helper names)
+        const { blogid, content } = req.body; 
 
-        const query = `
-            INSERT INTO comments (user_id, blog_id, comment_text) 
+        if (!content || content.trim() === "") {
+            return next(handleError(400, "Comment cannot be empty"));
+        }
+
+        // 3. Use your CommentSQL helper
+        const queryStr = `
+            INSERT INTO comments (user_id, blog_id, content) 
             VALUES ($1, $2, $3) 
             RETURNING *
         `;
-        const values = [user, blogid, comment];
-        
-        const result = await pool.query(query, values);
+        const result = await pool.query(queryStr, [userId, blogid, content]);
 
         res.status(200).json({
             success: true,
@@ -21,6 +28,7 @@ export const addcomment = async (req: Request, res: Response, next: NextFunction
             comment: result.rows[0]
         });
     } catch (error: any) {
+        console.error("Add Comment Error:", error.message);
         next(handleError(500, error.message));
     }
 };

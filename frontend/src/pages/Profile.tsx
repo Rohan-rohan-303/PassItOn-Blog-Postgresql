@@ -19,7 +19,7 @@ import { setUser } from '@/redux/user/user.slice'
 
 // 1. Define Interfaces
 interface UserProfile {
-    _id: string;
+    id: string;
     name: string;
     email: string;
     bio: string;
@@ -54,7 +54,7 @@ const Profile: React.FC = () => {
     const dispatch = useDispatch()
 
     const { data: userData, loading } = useFetch<UserResponse>(
-        `${getEnv('VITE_API_BASE_URL')}/user/get-user/${user.user._id}`,
+        `${getEnv('VITE_API_BASE_URL')}/user/get-user/${user.user.id}`,
         { method: 'get', credentials: 'include' }
     )
 
@@ -91,7 +91,7 @@ const Profile: React.FC = () => {
 
             formData.append('data', JSON.stringify(submissionData))
 
-            const response = await fetch(`${getEnv('VITE_API_BASE_URL')}/user/update-user/${userData?.user._id}`, {
+            const response = await fetch(`${getEnv('VITE_API_BASE_URL')}/user/update-user/${userData?.user.id}`, {
                 method: 'put',
                 credentials: 'include',
                 body: formData

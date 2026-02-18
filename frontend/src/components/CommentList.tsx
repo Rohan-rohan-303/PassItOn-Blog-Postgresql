@@ -11,12 +11,12 @@ import { useSelector } from 'react-redux'
 interface Author {
     name: string;
     avatar?: string;
-    _id?: string;
+    id?: string;
 }
 
 interface CommentType {
-    _id: string;
-    comment: string;
+    id: string;
+    content: string;
     user: Author;
     createdAt: string;
 }
@@ -75,7 +75,7 @@ const CommentList: React.FC<CommentListProps> = ({ props }) => {
                                 {moment(props.newComment.createdAt).format('DD-MM-YYYY')}
                             </p>
                             <div className='pt-3 text-gray-800'>
-                                {props.newComment.comment}
+                                {props.newComment.content}
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@ const CommentList: React.FC<CommentListProps> = ({ props }) => {
                 {/* Render the list from the database */}
                 {data?.comments && data.comments.length > 0 ? (
                     data.comments.map((comment) => (
-                        <div key={comment._id} className='flex gap-2 mb-3 border-t pt-3 first:border-none'>
+                        <div key={comment.id} className='flex gap-2 mb-3 border-t pt-3 first:border-none'>
                             <Avatar>
                                 <AvatarImage src={comment.user?.avatar || usericon} />
                             </Avatar>
@@ -95,7 +95,7 @@ const CommentList: React.FC<CommentListProps> = ({ props }) => {
                                     {moment(comment.createdAt).format('DD-MM-YYYY')}
                                 </p>
                                 <div className='pt-3 text-gray-800'>
-                                    {comment.comment}
+                                    {comment.content}
                                 </div>
                             </div>
                         </div>

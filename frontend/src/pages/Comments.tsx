@@ -19,12 +19,12 @@ import { showToast } from '@/utility/showToast'
 // 1. Define the Comment structure
 interface CommentItem {
     id: string;
-    comment: string;
-    blogid: {
+    content: string;
+    blog_id: {
         id: string;
         title: string;
     };
-    user: {
+    user_id: {
         id: string;
         name: string;
     };
@@ -79,11 +79,11 @@ const Comments: React.FC = () => {
                                 data.comments.map((comment) => (
                                     <TableRow key={comment.id}>
                                         <TableCell className="font-medium">
-                                            {comment.blogid?.title || 'Deleted Blog'}
+                                            {comment.blog_id?.title || 'Deleted Blog'}
                                         </TableCell>
-                                        <TableCell>{comment.user?.name || 'Unknown User'}</TableCell>
+                                        <TableCell>{comment.user_id?.name || 'Unknown User'}</TableCell>
                                         <TableCell className="max-w-xs truncate">
-                                            {comment.comment}
+                                            {comment.content}
                                         </TableCell>
                                         <TableCell className="text-right">
                                             <Button 

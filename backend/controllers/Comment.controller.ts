@@ -78,8 +78,8 @@ export const getAllComments = async (req: Request, res: Response, next: NextFunc
         let query = `
             SELECT 
                 c.*, 
-                json_build_object('title', b.title) as blogid,
-                json_build_object('name', u.name) as user
+                json_build_object('title', b.title) as blog_id,
+                json_build_object('name', u.name) as user_id
             FROM comments c
             JOIN blogs b ON c.blog_id = b.id
             JOIN users u ON c.user_id = u.id

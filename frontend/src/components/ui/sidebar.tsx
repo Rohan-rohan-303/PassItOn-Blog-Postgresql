@@ -1,4 +1,5 @@
 "use client"
+/* eslint-disable react-refresh/only-export-components */
 
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
@@ -606,10 +607,15 @@ function SidebarMenuSkeleton({
 }: React.ComponentProps<"div"> & {
   showIcon?: boolean
 }) {
-  // Random width between 50 to 90%.
+  // Deterministic width between 50% and 90% derived from React id (pure)
+  const _id = React.useId()
   const width = React.useMemo(() => {
-    return `${Math.floor(Math.random() * 40) + 50}%`
-  }, [])
+    let h = 0
+    for (let i = 0; i < _id.length; i++) {
+      h = (h * 31 + _id.charCodeAt(i)) % 997
+    }
+    return `${(h % 40) + 50}%`
+  }, [_id])
 
   return (
     <div

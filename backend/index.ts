@@ -21,12 +21,24 @@ app.use(cookieParser())
 app.use(express.json())
 
 app.use(cors({
-    origin: 'http://localhost:5173', 
+    // allow requests from any origin (needed when frontend may be served from many hosts)
+    // keep credentials: true so cookies/session still work
+    origin: true,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'] // Explicitly allow DELETE 
 }));
- 
 
+// debug: log incoming Origin header for troubleshooting CORS
+app.use((req, res, next) => {
+  console.log('>>> incoming Origin:', req.headers.origin);
+  next();
+});
+
+// debug endpoint to echo Origin header
+app.get('/debug/origin', (req, res) => {
+  return res.json({ origin: req.headers.origin || null });
+});
+ 
 app.use('/api/auth', AuthRoute)
 app.use('/api/user', UserRoute)
 app.use('/api/category', CategoryRoute)

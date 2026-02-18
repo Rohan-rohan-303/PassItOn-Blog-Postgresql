@@ -10,17 +10,38 @@ jobs:
   build:
     name: Build & Test (frontend + backend)
     runs-on: ubuntu-latest
+
+    # Start a Postgres service for DB-related CI steps (supabase-compatible)
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        options: >-
+          --health-cmd pg_isready -U postgres
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     env:
       CI: true
+      # Use PG_* (backend prefers DATABASE_URL only for remote Supabase).
+      PG_HOST: localhost
+      PG_USER: postgres
+      PG_PASSWORD: postgres
+      PG_DATABASE: postgres
+      PG_PORT: 5432
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js 18
+      - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Cache npm cache
         uses: actions/cache@v4
@@ -33,18 +54,25 @@ jobs:
       - name: Install & Lint → Frontend
         working-directory: frontend
         run: |
-          npm install
+          npm ci
           npm run lint
 
       - name: Build → Frontend
         working-directory: frontend
         run: |
-          npm install
+          npm ci
           npm run build
 
       - name: Install → Backend
         working-directory: backend
-        run: npm install
+        run: npm ci
+
+      - name: Wait for Postgres
+        run: sleep 10
+
+      - name: Initialize database (run backend/db/init.sql)
+        working-directory: backend
+        run: npm run db:init
 
       - name: Type-check / compile → Backend (tsc)
         working-directory: backend

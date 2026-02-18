@@ -16,7 +16,7 @@ interface Blog {
     id: string;
     title: string;
     slug: string;
-    featuredImage: string;
+    featured_image: string;
     author: Author;
     createdAt: string;
     category: {

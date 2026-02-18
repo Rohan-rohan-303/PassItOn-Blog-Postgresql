@@ -41,7 +41,7 @@ export interface IBlogProps {
     props: {
         title: string;
         slug: string;
-        featuredImage: string;
+        featured_image: string;
         createdAt: string | Date;
         category: {
             slug: string;

@@ -9,7 +9,7 @@ interface RelatedBlogItem {
     _id: string;
     title: string;
     slug: string;
-    featuredImage: string;
+    featured_image: string;
 }
 
 interface RelatedBlogResponse {
@@ -48,7 +48,7 @@ const RelatedBlog: React.FC<RelatedBlogProps> = ({ props }) => {
                             <div className='flex items-center gap-3 mb-4 transition-transform group-hover:translate-x-1'>
                                 <img 
                                     className='w-[100px] h-[70px] object-cover rounded-md shadow-sm' 
-                                    src={blog.featuredImage} 
+                                    src={blog.featured_image} 
                                     alt={blog.title}
                                 />
                                 <h4 className='line-clamp-2 text-lg font-semibold group-hover:text-violet-600 transition-colors'>

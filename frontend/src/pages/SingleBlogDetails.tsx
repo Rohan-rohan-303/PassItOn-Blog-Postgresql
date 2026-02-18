@@ -21,7 +21,7 @@ interface BlogDetails {
     title: string;
     author: Author;
     createdAt: string;
-    featuredImage: string;
+    featured_image: string;
     blog_content: string;
 }
 
@@ -79,7 +79,7 @@ const SingleBlogDetails: React.FC = () => {
 
                 <div className='my-8'>
                     <img 
-                        src={blogData.featuredImage} 
+                        src={blogData.featured_image} 
                         className='rounded-lg w-full object-cover max-h-[500px]' 
                         alt={blogData.title} 
                     />

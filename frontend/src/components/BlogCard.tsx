@@ -34,7 +34,7 @@ const BlogCard: React.FC<IBlogProps> = ({ props }) => {
                     {/* Featured Image */}
                     <div className='my-4'>
                         <img 
-                            src={props.featuredImage} 
+                            src={props.featured_image} 
                             className='rounded w-full h-48 object-cover' 
                             alt={props.title} 
                         />

@@ -24,7 +24,7 @@ type CategoryFormValues = z.infer<typeof formSchema>
 // 2. Define the expected API response structure
 interface SingleCategoryResponse {
     category: {
-        _id: string;
+        id: string;
         name: string;
         slug: string;
     }

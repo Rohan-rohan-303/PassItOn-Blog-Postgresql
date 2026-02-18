@@ -26,13 +26,13 @@ interface Author {
     name: string;
 }
 
-
 interface Blog {
     id: string;
     author: Author;
     category: ICategory;
     title: string;
     slug: string;
+    featured_image: string; // Added featured_image to interface
     createdAt: string;
 }
 
@@ -52,7 +52,6 @@ const BlogDetails: React.FC = () => {
         [refreshData]
     )
 
-    // 3. Typed handle delete
     const handleDelete = async (id: string) => {
         if (!window.confirm("Are you sure you want to delete this blog?")) return;
 
@@ -86,6 +85,7 @@ const BlogDetails: React.FC = () => {
                     <Table>
                         <TableHeader>
                             <TableRow>
+                                <TableHead className="w-[80px]">Image</TableHead> {/* Added Header */}
                                 <TableHead>Author</TableHead>
                                 <TableHead>Category</TableHead>
                                 <TableHead>Title</TableHead>
@@ -98,6 +98,21 @@ const BlogDetails: React.FC = () => {
                             {blogData && blogData.blog.length > 0 ? (
                                 blogData.blog.map((blog) => (
                                     <TableRow key={blog.id} className="hover:bg-muted/50">
+                                        {/* Added Image Cell */}
+                                        <TableCell>
+                                            {blog.featured_image ? (
+                                                <img 
+                                                    src={blog.featured_image} 
+                                                    alt={blog.title} 
+                                                    className="w-12 h-12 object-cover rounded-md border bg-muted"
+                                                />
+                                            ) : (
+                                                <div className="w-12 h-12 bg-muted rounded-md flex items-center justify-center text-[10px] text-muted-foreground">
+                                                    No Img
+                                                </div>
+                                            )}
+                                        </TableCell>
+
                                         <TableCell className="font-medium">{blog?.author?.name}</TableCell>
                                         <TableCell>{blog?.category?.name}</TableCell>
                                         <TableCell className="max-w-[200px] truncate">{blog?.title}</TableCell>
@@ -129,7 +144,7 @@ const BlogDetails: React.FC = () => {
                                 ))
                             ) : (
                                 <TableRow>
-                                    <TableCell colSpan={6} className="h-24 text-center">
+                                    <TableCell colSpan={7} className="h-24 text-center"> {/* Updated colSpan to 7 */}
                                         No blogs found.
                                     </TableCell>
                                 </TableRow>

@@ -1,4 +1,4 @@
-import { toast, type ToastOptions, type TypeOptions } from "react-toastify"
+import { toast, type ToastOptions } from "react-toastify"
 
 // 1. Define the allowed toast types
 type ToastType = 'success' | 'error' | 'info' | 'default';

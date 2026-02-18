@@ -1,0 +1,16 @@
+export declare const RouteIndex = "/";
+export declare const RouteSignIn = "/sign-in";
+export declare const RouteSignUp = "/sign-up";
+export declare const RouteProfile = "/profile";
+export declare const RouteCategoryDetails = "/categories";
+export declare const RouteAddCategory = "/category/add";
+export declare const RouteEditCategory: (category_id?: string | number) => string;
+export declare const RouteBlog = "/blog";
+export declare const RouteBlogAdd = "/blog/add";
+export declare const RouteBlogEdit: (blogid?: string | number) => string;
+export declare const RouteBlogDetails: (category?: string, blog?: string) => string;
+export declare const RouteBlogByCategory: (category?: string) => string;
+export declare const RouteSearch: (q?: string) => string;
+export declare const RouteCommentDetails = "/comments";
+export declare const RouteUser = "/users";
+//# sourceMappingURL=RouteName.d.ts.map

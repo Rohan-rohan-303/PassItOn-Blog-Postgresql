@@ -10,7 +10,7 @@
     /* Project Reference Requirements */
     "composite": true,
     "declaration": true,
-    "noEmit": false, 
+    "noEmit": true, 
 
     /* Bundler mode */
     "moduleResolution": "bundler",

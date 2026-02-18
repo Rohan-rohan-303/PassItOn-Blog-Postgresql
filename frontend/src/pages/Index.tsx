@@ -10,7 +10,7 @@ interface Blog {
     _id: string;
     title: string;
     slug: string;
-    featuredImage: string;
+    featured_image: string;
     createdAt: string;
     category: {
         slug: string;

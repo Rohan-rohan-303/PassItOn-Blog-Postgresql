@@ -9,7 +9,7 @@ export interface User {
     created_at?: string;
 }
 
-interface UserState {
+export interface UserState {
     isLoggedIn: boolean;
     user: User | null;
 }

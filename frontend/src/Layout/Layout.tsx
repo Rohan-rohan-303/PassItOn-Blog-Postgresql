@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom'
-import AppSidebar from '@/components/AppSidebar'
-import Footer from '@/components/Footer'
-import Topbar from '@/components/Topbar'
-import { SidebarProvider } from '@/components/ui/sidebar'
+import AppSidebar from '../components/AppSidebar.tsx'
+import Footer from '../components/Footer.tsx'
+import Topbar from '../components/Topbar.tsx'
+import { SidebarProvider } from '../components/ui/sidebar.tsx'
 
 const Layout = () => {
     return (

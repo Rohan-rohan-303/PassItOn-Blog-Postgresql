@@ -1,4 +1,4 @@
-import { RouteSignIn } from '@/utility/RouteName'
+import { RouteSignIn } from '@/utility/RouteName.ts'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, Outlet } from 'react-router-dom'
